@@ -18,13 +18,19 @@
    
   </head>
   <body>
+    {% include 'nav.html' %}
     <div class ="container">
 <h1 class="text-center mt-4 mb-4"> {{company_name}} Careers</h1>
     <img class ="img-fluid" id="banner" src ="https://jovian-careers-website--hafsa-maqsoodma.repl.co/static/ban.jpg">
-    <h2 class="text-center"> About Jovian</h2>
-    <p class = "lead">
+    <h2 class="mt-5 text-center"> About Jovian</h2>
+      <div class ="row" style ="margin-bottom: 16px">
+        <div class ="col-md-6">
+    <p class = "lead mt-5">
       Don't just find a job. Find your passion. Something you can believe in. Our shared purpose creates a unique culture that makes our work more meaningful. our purpose: to power an inclusive future for all. If you can imagine it, we will build a bridge to get you there.We leverage our holistic portfolio of capabilities in consulting, design, engineering, operations, and emerging technologies to help clients realize their boldest ambitions and build future-ready, sustainable Career.
-we are, The bridge to possible. </p>
+we are, The bridge to possible. </p></div>
+      <div class ="d-none d-md-block col-md-6 mt-4"> 
+        <img src="/static/peoples.jpg" style= "height:250px; width: 500px; border-radius:4px;">
+      </div>
     <h2 class ="text-center mt-2 mb-4">Job Openings</h2>
     
       <div>
@@ -34,7 +40,8 @@ we are, The bridge to possible. </p>
     </div>
       <div class ="text-center">
     <button class ="btn btn-primary btn-lg">Contact Us</button>
-        <p class ="mt-4"> Copyright 2023, Jovian</p>
+        
     </div>
+      {% include 'footer.html' %}
   </body>
 </html>
