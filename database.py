@@ -56,3 +56,20 @@ def add_application_to_db(job_id, data):
         'work_experience': data['work_experience'],
         'resume_url': data['resume_url']
       })
+
+
+def authenticate_user(email, password):
+  with engine.connect() as conn:
+    query = text(
+      "SELECT * FROM user WHERE email = :email AND password = :password")
+    bound_query = query.bindparams(email=email, password=password)
+
+    result = conn.execute(bound_query)
+    user = result.fetchone()
+
+    if user:
+      # Convert the user row into a dictionary
+      user_dict = dict(zip(result.keys(), user))
+      return user_dict
+    else:
+      return None
