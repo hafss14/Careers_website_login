@@ -8,10 +8,10 @@ engine = create_engine(db_connection_string,
                          "ssl_ca": "/etc/ssl/cert.pem"
                        }})
 
-
+# The with engine.connect() as conn: statement establishes a connection to the database using the engine object and creates a connection object conn.
 def load_jobs_from_db():
   with engine.connect() as conn:
-    result = conn.execute(text("select * from jobs"))
+    result = conn.execute(text("select * from jobs")) # The text function from SQLAlchemy is used to create a SQL expression object representing the query.
     print("type(result):", type(result))
 
     result_all = result.fetchall()
@@ -21,11 +21,14 @@ def load_jobs_from_db():
     result_list = []
     for row in result_all:
       result_list.append(dict(zip(result.keys(), row)))
+      #The result.keys() returns a list of column names from the result set.
+#   zip(result.keys(), row) pairs each column name with the corresponding value from the row
 
     print("type(result_list):", type(result_list))
     return result_list
 
-
+# The bindparams method is called on the query object to define a parameter for the query.
+# bindparam("id", id) creates a bind parameter named "id" with the value id. The id variable holds the specific ID value.
 def load_job_from_db(id):
   with engine.connect() as conn:
     query = text("select * from jobs where id = :id")
